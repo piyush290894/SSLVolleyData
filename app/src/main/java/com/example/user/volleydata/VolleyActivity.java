@@ -43,6 +43,8 @@ public class VolleyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_volley);
         tv= (TextView) findViewById(R.id.volleyMessage);
 
+
+        //https url
         String url="https://www.google.com";
         HurlStack hurlStack=new HurlStack(){
             @Override
@@ -50,7 +52,7 @@ public class VolleyActivity extends AppCompatActivity {
                 HttpsURLConnection httpsURLConnection= (HttpsURLConnection) super.createConnection(url);
                 try {
                     httpsURLConnection.setSSLSocketFactory(getSSLSocketFactory());
-                    //httpsURLConnection.setHostnameVerifier(getHostnameVerifier());
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -109,6 +111,7 @@ public class VolleyActivity extends AppCompatActivity {
 
     private SSLSocketFactory getSSLSocketFactory() throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         CertificateFactory cf=CertificateFactory.getInstance("X.509");
+        //Input certificate file
         InputStream caInput=getResources().openRawResource(R.raw.selfsigned);
 
         Certificate ca=cf.generateCertificate(caInput);
